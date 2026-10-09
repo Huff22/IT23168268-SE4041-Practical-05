@@ -8,9 +8,8 @@
 import Foundation
 
 struct TaskItem: Identifiable {
-
     let id = UUID()
-
     var title: String
     var completed: Bool
+    var category: String // Option C feature
 }
