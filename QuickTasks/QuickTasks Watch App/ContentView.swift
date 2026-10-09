@@ -26,33 +26,47 @@ struct ContentView: View {
             completed: false
         )
     ]
+    
+    private var completedCount: Int {
+        tasks.filter { $0.completed }.count
+    }
 
     var body: some View {
+        let completedCount =
+            tasks.filter { $0.completed }.count
 
         NavigationStack {
 
-            List(tasks) { task in
+            VStack {
 
-                NavigationLink {
+                Text(
+                    "\(completedCount)/\(tasks.count) Completed"
+                )
+                .font(.caption)
 
-                    TaskDetailView(task: task)
+                List(tasks.indices, id: \.self) { index in
 
-                } label: {
+                    Button {
 
-                    HStack {
+                        tasks[index].completed.toggle()
 
-                        Image(
-                            systemName:
-                                task.completed
-                                ? "checkmark.circle.fill"
-                                : "circle"
-                        )
+                    } label: {
 
-                        Text(task.title)
+                        HStack {
+
+                            Image(
+                                systemName:
+                                    tasks[index].completed
+                                    ? "checkmark.circle.fill"
+                                    : "circle"
+                            )
+
+                            Text(tasks[index].title)
+                        }
                     }
                 }
             }
-            .navigationTitle("Tasks")
+            
         }
     }
 }
