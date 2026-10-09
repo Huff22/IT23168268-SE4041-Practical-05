@@ -9,24 +9,37 @@ import SwiftUI
 
 struct ContentView: View {
 
+    @State private var glasses = 0
+
     var body: some View {
 
-        VStack(spacing: 10) {
+        VStack(spacing: 4) {
 
-            Image(systemName: "figure.walk")
+            Image(systemName: "drop.fill")
                 .font(.largeTitle)
-                .foregroundStyle(.green)
+                .foregroundStyle(.blue)
 
-            Text("Daily Activity")
+            Text("Water")
                 .font(.headline)
 
-            Text("5,240")
-                .font(.title)
+            Text("\(glasses)")
+                .font(.largeTitle)
                 .bold()
 
-            Text("Steps")
+            Text("Glasses")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+
+            Button("Add") {
+                glasses += 1
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.mini)
+            
+            Button("Reset") {
+                glasses = 0
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.mini)
         }
     }
 }
