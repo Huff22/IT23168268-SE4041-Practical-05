@@ -28,15 +28,26 @@ struct ContentView: View {
 
             Text("Glasses")
                 .font(.caption)
-
-            Button("Add") {
+            Button {
                 glasses += 1
+            } label: {
+
+                Label(
+                    "Add Water",
+                    systemImage: "plus.circle.fill"
+                )
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.mini)
             
-            Button("Reset") {
+            Button {
                 glasses = 0
+            } label: {
+
+                Label(
+                    "Reset",
+                    systemImage: "arrow.counterclockwise"
+                )
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.mini)
