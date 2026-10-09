@@ -29,19 +29,30 @@ struct ContentView: View {
 
     var body: some View {
 
-        List(tasks) { task in
+        NavigationStack {
 
-            HStack {
+            List(tasks) { task in
 
-                Image(
-                    systemName:
-                        task.completed
-                        ? "checkmark.circle.fill"
-                        : "circle"
-                )
+                NavigationLink {
 
-                Text(task.title)
+                    TaskDetailView(task: task)
+
+                } label: {
+
+                    HStack {
+
+                        Image(
+                            systemName:
+                                task.completed
+                                ? "checkmark.circle.fill"
+                                : "circle"
+                        )
+
+                        Text(task.title)
+                    }
+                }
             }
+            .navigationTitle("Tasks")
         }
     }
 }
