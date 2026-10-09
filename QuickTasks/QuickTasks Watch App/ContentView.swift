@@ -9,48 +9,39 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State private var glasses = 0
+    @State private var tasks = [
+
+        TaskItem(
+            title: "Morning Walk",
+            completed: true
+        ),
+
+        TaskItem(
+            title: "Drink Water",
+            completed: false
+        ),
+
+        TaskItem(
+            title: "Read Notes",
+            completed: false
+        )
+    ]
 
     var body: some View {
 
-        VStack(spacing: 4) {
+        List(tasks) { task in
 
-            Image(systemName: "drop.fill")
-                .font(.largeTitle)
-                .foregroundStyle(.blue)
+            HStack {
 
-            Text("Water")
-                .font(.headline)
-
-            Text("\(glasses)")
-                .font(.largeTitle)
-                .bold()
-
-            Text("Glasses")
-                .font(.caption)
-            Button {
-                glasses += 1
-            } label: {
-
-                Label(
-                    "Add Water",
-                    systemImage: "plus.circle.fill"
+                Image(
+                    systemName:
+                        task.completed
+                        ? "checkmark.circle.fill"
+                        : "circle"
                 )
-            }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.mini)
-            
-            Button {
-                glasses = 0
-            } label: {
 
-                Label(
-                    "Reset",
-                    systemImage: "arrow.counterclockwise"
-                )
+                Text(task.title)
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.mini)
         }
     }
 }
